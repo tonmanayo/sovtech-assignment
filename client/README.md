@@ -12,6 +12,8 @@
 - I'd also like to add something simple like adding a favourite jokes list
 - This is my first time using graphQL on the front end, I haven't generated the types for teh queries
 - The things TODO are simple and I'll happily implement them if you'd like just request a PR :D
+- Oh I guss we could also add debouncing on the front end backend to rate limit
+- And some proper tests on the front and backend
 ##
 
 To start server:

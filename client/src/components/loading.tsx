@@ -5,6 +5,6 @@ import React from 'react';
  */
 export default function Loading() {
   return (
-        <div className={'fa fa-spinner fa-spin'} />
+        <div className={'fa flex fa-spinner fa-spin'} />
   );
 }

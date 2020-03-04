@@ -1,26 +1,22 @@
 import React from 'react';
 
-import { Loading } from '../../components';
 import { useSelector } from "react-redux";
 import { RootState } from "../../config/reducers";
-import {useJoke} from "./helpers";
 
 interface IJokesProps {
-
+    fetchJoke: () => void
 }
 
 /**
  * A joke component - renders a list of jokes and and adds new ones
  */
-const Joke: React.FC<IJokesProps> = () => {
+const Joke: React.FC<IJokesProps> = ({ fetchJoke }) => {
     const { jokes } = useSelector(
         (state: RootState) => state.home
     );
-    const { fetchJoke, loading, error } = useJoke();
 
     return (
         <div onClick={() => fetchJoke()}>
-            {loading && <Loading />}
             {
                 Object.keys(jokes).reverse().map(key => <div key={key}>
                     <div className={'flex pt-4'}>
@@ -46,11 +42,6 @@ const Joke: React.FC<IJokesProps> = () => {
                         </div>
                     </div>
                 </div>)
-            }
-            {
-                error && <div className={'bg-red-200'}>
-                    { error?.message }
-                </div>
             }
         </div>
     );
