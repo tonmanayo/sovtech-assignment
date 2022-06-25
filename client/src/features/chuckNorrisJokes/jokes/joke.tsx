@@ -1,34 +1,37 @@
 import React from 'react';
-
-import { useSelector } from "react-redux";
-import { RootState } from "../../config/reducers";
+import { Loader } from '../../../components';
+import { useAppDispatch, useAppSelector } from '../../../config/hooks';
+import { selectCategory } from '../categories/categoriesSlice';
+import { useGetJokeByCategoryQuery } from './jokesApiSlice';
+import { addJoke, selectJokes } from './jokesSlice';
 
 interface IJokesProps {
-    fetchJoke: () => void
 }
 
 /**
  * A joke component - renders a list of jokes and and adds new ones
  */
-const Joke: React.FC<IJokesProps> = ({ fetchJoke }) => {
-    const { jokes } = useSelector(
-        (state: RootState) => state.home
-    );
-
+const Joke: React.FC<IJokesProps> = ({ }) => {
+    
+    const category = useAppSelector(state => selectCategory(state.checkNorris.categories))
+    const jokes = useAppSelector(state => selectJokes(state.checkNorris.jokes))
+    const { data: jokeData, isLoading } = useGetJokeByCategoryQuery({ category })
+    
+    if (!jokes) return <Loader />;
     return (
-        <div onClick={() => fetchJoke()}>
+        <div >
             {
-                Object.keys(jokes).reverse().map(key => <div key={key}>
+                jokes?.map((joke, key) => <div key={key}>
                     <div className={'flex pt-4'}>
                         <div className={'w-1/4 justify-center align-center flex'}>
-                            <img className={'w-10 h-10 self-center '} src={jokes[key].icon_url} alt=""/>
+                            <img className={'w-10 h-10 self-center '} src={joke.icon_url} alt=""/>
                         </div>
                         <div className={'w-3/4'}>
                             <div className={'font-medium'} style={{textTransform: 'capitalize'}}>
-                                { jokes[key].category } joke
+                                { joke.category } joke
                             </div>
                             <div className={'cursor-auto max-w-xs p-2 bg-gray-200 mx-auto m-2 rounded font-light'}>
-                                { jokes[key].value }
+                                { joke.value }
                             </div>
                         </div>
                     </div>

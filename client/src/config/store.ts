@@ -1,20 +1,17 @@
-import { configureStore, Action } from '@reduxjs/toolkit'
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import rootReducer, { RootState } from './reducers'
-import { ThunkAction } from 'redux-thunk'
-
+import { setupListeners } from '@reduxjs/toolkit/query'
+import { chuckNorrisApiSlice } from '../features/chuckNorrisJokes/api/apiSlice';
 
 const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(chuckNorrisApiSlice.middleware),
 });
 
-if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./reducers', () => {
-        const newRootReducer = require('./reducers').default;
-        store.replaceReducer(newRootReducer)
-    })
-}
-
 export type AppDispatch = typeof store.dispatch
-export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>
+
+setupListeners(store.dispatch)
 
 export default store

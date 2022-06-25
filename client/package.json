@@ -1,58 +1,53 @@
 {
-  "name": "client",
+  "name": "chuck",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@apollo/react-hooks": "3.0.0",
-    "@reduxjs/toolkit": "^1.2.5",
-    "@types/node": "^12.12.14",
-    "@types/react": "^16.9.15",
-    "@types/react-dom": "^16.9.4",
-    "@types/react-redux": "^7.1.7",
-    "apollo-cache-inmemory": "^1.6.2",
-    "apollo-client": "^2.6.3",
-    "apollo-link-http": "^1.5.15",
-    "autoprefixer": "^9.7.4",
-    "font-awesome": "^4.7.0",
-    "graphql": "^14.4.2",
-    "graphql-tag": "^2.10.1",
-    "postcss-cli": "^7.1.0",
-    "react": "^16.9.0-alpha.0",
-    "react-dom": "^16.9.0-alpha.0",
-    "react-redux": "^7.2.0",
-    "react-scripts": "3.0.1",
-    "redux": "^4.0.5",
-    "typescript": "^3.7.3"
+    "@reduxjs/toolkit": "^1.8.2",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.0",
+    "@types/jest": "^27.5.1",
+    "@types/node": "^17.0.36",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "@types/tailwindcss": "^3.0.10",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.2.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.7.2",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "start": "yarn run build:style && react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "run:ios-demo": "npx artillery run apollo-internal-demos/ios-workload.yml",
-    "codegen": "apollo client:codegen --target typescript --watch"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
-    "@apollo/react-testing": "3.0.0",
-    "@testing-library/jest-dom": "^4.0.0",
-    "@testing-library/react": "^8.0.7",
-    "@types/jest": "^24.0.23",
-    "@types/webpack-env": "^1.15.1",
-    "apollo": "^2.16.3",
-    "artillery": "^1.6.0-26",
-    "npm-watch": "^0.6.0",
-    "redux-devtools": "^3.5.0",
-    "redux-devtools-extension": "^2.13.8",
-    "tailwindcss": "^1.2.0"
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24"
   }
 }

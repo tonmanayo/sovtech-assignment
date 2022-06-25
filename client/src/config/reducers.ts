@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux'
-import home from './../pages/home/reducer'
+import { chuckNorrisApiSlice } from './../features/chuckNorrisJokes/api/apiSlice';
+import chuckNorrisReducer from './../features/chuckNorrisJokes/reducers';
+
 
 const rootReducer = combineReducers({
-    home
-});
+    [chuckNorrisApiSlice.reducerPath]: chuckNorrisApiSlice.reducer,
+    checkNorris: chuckNorrisReducer,
+}, );
 
 export type RootState = ReturnType<typeof rootReducer>
 
